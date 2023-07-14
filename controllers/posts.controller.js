@@ -31,7 +31,7 @@ class PostsController {
   //좋아요 게시글 조회
   findLikeAllPost = async (req, res, next) => {
     try {
-      const { userId } = res.locals.user;
+      const userId = res.locals.user;
       const likePost = await this.postService.findLikeAllPost(userId);
       res.status(200).json({ data: likePost });
     } catch (error) {
@@ -44,7 +44,7 @@ class PostsController {
   //게시글 작성
   createPost = async (req, res, next) => {
     try {
-      const { userId } = res.locals.user;
+      const userId = res.locals.user;
       const { title, content } = req.body;
       const createPostData = await this.postService.createPost(
         userId,
@@ -63,7 +63,7 @@ class PostsController {
   //게시글 수정
   updatePost = async (req, res, next) => {
     try {
-      const { userId } = res.locals.user;
+      const userId = res.locals.user;
       const { postId } = req.params;
       const { title, content } = req.body;
       const [updatePostData] = await this.postService.updatePost(
@@ -87,7 +87,7 @@ class PostsController {
   //게시글 삭제
   deletePost = async (req, res, next) => {
     try {
-      const { userId } = res.locals.user;
+      const userId = res.locals.user;
       const { postId } = req.params;
       const deletePostData = await this.postService.deletePost(userId, postId);
 
@@ -105,7 +105,7 @@ class PostsController {
   //좋아요
   likePost = async (req, res, next) => {
     try {
-      const { userId } = res.locals.user;
+      const userId = res.locals.user;
       const { postId } = req.params;
       const likePostData = await this.postService.likePost(userId, postId);
 

@@ -21,13 +21,7 @@ module.exports = async (req, res, next) => {
     const decodedToken = jwt.verify(authToken, process.env.JWT_SECRET);
     const userId = decodedToken.userId;
 
-    const user = await Users.findOne({ where: { userId } });
-    if (!user) {
-      return res
-        .status(401)
-        .json({ errorMessage: '토큰에 해당하는 사용자가 존재하지 않습니다.' });
-    }
-    res.locals.user = user;
+    res.locals.user = userId;
     next();
   } catch (error) {
     console.error(error);

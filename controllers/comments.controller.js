@@ -20,7 +20,7 @@ class CommentsController {
   //댓글 작성
   createComment = async (req, res, next) => {
     try {
-      const { userId } = res.locals.user;
+      const userId = res.locals.user;
       const { postId } = req.params;
       const { comment } = req.body;
       if (comment.length === 0) {
@@ -42,10 +42,10 @@ class CommentsController {
     }
   };
 
-  //게시글 수정
+  //댓글 수정
   updateComment = async (req, res, next) => {
     try {
-      const { userId } = res.locals.user;
+      const userId = res.locals.user;
       const { postId, commentId } = req.params;
       const { comment } = req.body;
 
@@ -81,10 +81,10 @@ class CommentsController {
     }
   };
 
-  //게시글 삭제
+  //댓글 삭제
   deleteComment = async (req, res, next) => {
     try {
-      const { userId } = res.locals.user;
+      const userId = res.locals.user;
       const { postId, commentId } = req.params;
 
       const findComment = await this.commentService.findComment(commentId);
